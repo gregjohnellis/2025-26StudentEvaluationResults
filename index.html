@@ -117,16 +117,20 @@ footer p{opacity:.7;margin-top:.4rem}
   <div class="sec-label">Program Overview</div>
   <h2>What We Measured &amp; What We Found</h2>
   <div class="div"></div>
-  <p class="lead">At the start and end of each school year, all 4th grade classrooms at each of our schoos recieve the same 22-question survey covering knowledge, skills, behaviors, and attitudes related to food, water, ecology, waste, and the garden. We compared pre- and post-survey results across all schools, regardless of whether or how much the class utilized the garden, creating a random sample.  Our evaluation asks: did the program move the needle?</p>
-  <p class="lead">Note: Of the 33 schools where we work, only 20 responded at all to either test.  Four of these responding schools were excluded from this analysis: Nipomo and San Gabriel did not complete post-tests and Templeton and Georgia Brown only had a couple of students respond at all.</p>
+  <p class="lead">At the start and end of each school year, all 4th grade classrooms at each of our schoos recieve the same 22-question survey covering knowledge, skills, behaviors, and attitudes related to food, water, ecology, waste, and the garden. We compared pre- and post-survey results across all schools, regardless of whether or how much the class utilized the garden, creating a random sample.  Our evaluation asks: did our program make real change?</p>
+  <p class="lead">Note: Of the 33 schools where we work, only 20 responded at all to either test.  Four of these responding schools were excluded from this analysis: Nipomo and San Gabriel did not complete post-tests. Templeton and Georgia Brown only had 1 to 4 students respond at all.</p>
 
   <div class="stat-grid">
-    <div class="stat-card"><div class="num">11</div><div class="lbl">Questions with significant gains</div><div class="sub">out of 22 tested</div></div>
+    <div class="stat-card"><div class="num">11</div><div class="lbl">Questions with significant gains</div><div class="sub">out of 22 questions</div></div>
     <div class="stat-card"><div class="num">+19pp</div><div class="lbl">Biggest single-question gain</div><div class="sub">Water efficiency knowledge</div></div>
     <div class="stat-card"><div class="num">4</div><div class="lbl">Schools with significant overall gains</div><div class="sub">Virginia Peterson, Sinsheimer, Pat Butler, Vineyard</div></div>
     <div class="stat-card"><div class="num">16</div><div class="lbl">Schools in the analysis</div><div class="sub">≥10 students completing both surveys</div></div>
   </div>
 
+  <div class="callout bl">
+    <strong>How to read "percentage points" (pp):</strong> If 44% of students answered correctly before the program and 63% answered correctly after, that's a +19 percentage point gain. We use this instead of "percent change" because it's more direct and easier to interpret.  Also keep in mind that 1% represents about 100 students across our 10,000+ student cohort.
+  </div>
+  
   <div class="callout">
     <strong>What does "statistically significant" mean?</strong> When we say a result is "significant," it means the change we observed is very unlikely to be due to random chance — there is less than a 5% probability the result happened by accident. It doesn't necessarily mean the change was huge, but it does mean it was real and not just noise in the data.
   </div>
@@ -144,10 +148,6 @@ footer p{opacity:.7;margin-top:.4rem}
       <canvas id="overviewChart" role="img" aria-label="Horizontal bar chart showing score change for all 22 questions"></canvas>
     </div>
   </div>
-
-  <div class="callout bl">
-    <strong>How to read "percentage points" (pp):</strong> If 44% of students answered correctly before the program and 63% answered correctly after, that's a +19 percentage point gain. We use this instead of "percent change" because it's more direct and easier to interpret.
-  </div>
 </section>
 
 <!-- QUESTIONS -->
@@ -156,7 +156,7 @@ footer p{opacity:.7;margin-top:.4rem}
   <div class="sec-label">Detailed Results</div>
   <h2>Results by Question</h2>
   <div class="div"></div>
-  <p class="lead">Filter by topic or click column headers to sort. "Pre %" = share of students who answered correctly or positively before the program. "Post %" = same after. Click column headers to sort.</p>
+  <p class="lead">Filter by topic or click column headers to sort. "Pre %" = share of students who answered correctly or positively before the program. "Post %" = share of students who answered correctly after the program. Click column headers to sort. "n" represents the number of students who responded to each question on the Pre or Post test. "p-Value" is related to a question's statistical significance.  "Effect" indicates how large a change is with >.2 = small, >.5 = medium, and >.8 = large.</p>
 
   <div class="pills" id="topicPills">
     <button class="pill active" onclick="filterQ('All',this)">All Topics</button>
@@ -190,7 +190,7 @@ footer p{opacity:.7;margin-top:.4rem}
 
   <div class="chart-wrap" style="margin-top:2rem">
     <h3>Average Change by Topic Area</h3>
-    <p class="chart-subtitle">Average percentage-point change across all binary questions within each topic</p>
+    <p class="chart-subtitle">Average percentage-point change across all yes/no and true/false questions within each topic</p>
     <div style="position:relative;width:100%;height:280px">
       <canvas id="topicChart" role="img" aria-label="Bar chart of average score change by topic area"></canvas>
     </div>
@@ -219,7 +219,7 @@ footer p{opacity:.7;margin-top:.4rem}
   <div class="school-grid" id="schoolGrid"></div>
 
   <div class="callout am">
-    <strong>Outliers:</strong> The best performing and worst performing school have one thing in common--only about half as many students took the post-test as the pre-test.  This could lead to biasing of the data if students who didn't respond had more or less garden exposure than students who did.
+    <strong>Outliers:</strong> The best performing and worst performing school have at least one thing in common--only about half as many students took the post-test as the pre-test.  This could lead to biasing of the data if students who didn't respond had more or less garden exposure than students who did.
   </div>
 
   <div class="chart-wrap" style="margin-top:2rem">
@@ -262,12 +262,12 @@ footer p{opacity:.7;margin-top:.4rem}
   <div class="sec-label">A Closer Look</div>
   <h2>Why Did Garden Attitude Scores Decline?</h2>
   <div class="div"></div>
-  <p class="lead">Three garden attitude questions showed declines at the end of the year. This is worth understanding, not dismissing.</p>
+  <p class="lead">Three garden attitude questions showed declines at the end of the year, warranting deeper exploration of the underlying causes.</p>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px">
     <div class="callout rd" style="border-radius:var(--rad)">
       <strong>"My favorite place at school is the garden"</strong><br>
       −6.7pp &nbsp;|&nbsp; p = .013 (significant)<br><br>
-      Fewer students chose the garden as their favorite place by year-end. Novelty may fade, or competing preferences (recess, library) reassert themselves over time.
+      Fewer students chose the garden as their favorite place by year-end. Novelty may fade, or competing preferences (recess, library) reassert themselves over time.  Students are only allowed to choose one favorite place--a ranked choice might be more accurate.  Social and cultural stigmas against gardening might also be at play as students mature.
     </div>
     <div class="callout rd" style="border-radius:var(--rad)">
       <strong>"I feel happy in the garden" (0–4 scale)</strong><br>
@@ -291,10 +291,10 @@ footer p{opacity:.7;margin-top:.4rem}
 <section id="lessons">
 
   <div class="sec-label">Lessons Taught &amp; Learning Outcomes</div>
-  <h2>Does More Lessons = More Learning?</h2>
+  <h2>Do More Lessons = More Learning?</h2>
   <div class="div"></div>
 
-  <p class="lead">One of the most natural questions to ask is whether schools that received more lessons showed bigger improvements on the survey. We matched lesson counts from the 2025–26 Impact Report to pre-to-post score change across all 16 schools with sufficient survey responses. The answer is nuanced — and worth understanding.</p>
+  <p class="lead">One of the most natural questions to ask is whether schools that received more lessons showed bigger improvements on the survey. We matched lesson counts from the 2025–26 Impact Report to pre-to-post score change across all 16 schools with sufficient survey responses. The answer is nuanced.</p>
 
   <!-- Stat cards -->
   <div class="stat-grid">
@@ -321,7 +321,7 @@ footer p{opacity:.7;margin-top:.4rem}
   </div>
 
   <div class="callout bl">
-    <strong>What this means in plain language:</strong> Both statistical methods point the same direction — schools with more lessons tended to show <em>smaller</em> pre-to-post score gains. The Spearman result crosses the significance threshold (p = .030), meaning this pattern is unlikely due to chance. However, the most likely explanation is a <strong>ceiling effect</strong>: schools receiving more lessons already start with higher baseline knowledge, leaving less room for the survey to detect improvement.
+    <strong>What this means:</strong> Both statistical methods point the same direction — schools with more lessons tended to show <em>smaller</em> pre-to-post score gains. The Spearman result crosses the significance threshold (p = .030), meaning this pattern is unlikely due to chance. However, the most likely explanation is a <strong>ceiling effect</strong>: schools receiving more lessons already start with higher baseline knowledge, leaving less room for the survey to detect improvement.
   </div>
 
   <!-- SCATTER CHART -->
