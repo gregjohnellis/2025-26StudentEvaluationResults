@@ -90,6 +90,7 @@ footer p{opacity:.7;margin-top:.4rem}
     <a href="#questions">By Question</a>
     <a href="#schools">By School</a>
     <a href="#garden-note">Garden Attitudes</a>
+    <a href="#lessons">Lessons &amp; Learning</a>
     <a href="#methods">Methodology</a>
     <a href="#next-steps">Next Steps</a>
   </div>
@@ -284,6 +285,110 @@ footer p{opacity:.7;margin-top:.4rem}
 </section>
 </div>
 
+<!-- LESSONS vs CHANGE SECTION -->
+<div class="bg-sand" style="padding:.5rem 0">
+<section id="lessons">
+
+  <div class="sec-label">Lessons Taught &amp; Learning Outcomes</div>
+  <h2>Does More Lessons = More Learning?</h2>
+  <div class="div"></div>
+
+  <p class="lead">One of the most natural questions to ask is whether schools that received more lessons showed bigger improvements on the survey. We matched lesson counts from the 2025–26 Impact Report to pre-to-post score change across all 16 schools with sufficient survey responses. The answer is nuanced — and worth understanding.</p>
+
+  <!-- Stat cards -->
+  <div class="stat-grid">
+    <div class="stat-card" style="border-top-color:var(--bl)">
+      <div class="num" style="color:var(--bl)">−0.45</div>
+      <div class="lbl">Pearson Correlation (r)</div>
+      <div class="sub">p = .08 — not statistically significant</div>
+    </div>
+    <div class="stat-card" style="border-top-color:var(--rd)">
+      <div class="num" style="color:var(--rd)">−0.54</div>
+      <div class="lbl">Spearman Rank Correlation (ρ)</div>
+      <div class="sub">p = .030 — statistically significant</div>
+    </div>
+    <div class="stat-card" style="border-top-color:var(--gm)">
+      <div class="num">16</div>
+      <div class="lbl">Schools Analyzed</div>
+      <div class="sub">All with pre, post &amp; lesson data</div>
+    </div>
+    <div class="stat-card" style="border-top-color:var(--am)">
+      <div class="num" style="color:var(--am)">Negative</div>
+      <div class="lbl">Direction of Trend</div>
+      <div class="sub">More lessons → smaller measured gains</div>
+    </div>
+  </div>
+
+  <div class="callout bl">
+    <strong>What this means in plain language:</strong> Both statistical methods point the same direction — schools with more lessons tended to show <em>smaller</em> pre-to-post score gains. The Spearman result crosses the significance threshold (p = .030), meaning this pattern is unlikely due to chance. However, the most likely explanation is a <strong>ceiling effect</strong>: schools receiving more lessons already start with higher baseline knowledge, leaving less room for the survey to detect improvement.
+  </div>
+
+  <!-- SCATTER CHART -->
+  <div class="chart-wrap" style="margin-top:1.5rem">
+    <h3>Lessons Taught vs. Pre-to-Post Score Change (2025–26)</h3>
+    <p class="chart-subtitle">Each circle = one school. Size reflects post-survey student count. Hover for details. Green = statistically significant gain &nbsp;|&nbsp; Red = statistically significant decline &nbsp;|&nbsp; Gray = no significant change &nbsp;|&nbsp; Dashed line = trend</p>
+
+    <!-- Legend -->
+    <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:1rem;font-family:Arial,sans-serif;font-size:12px;color:var(--muted)">
+      <span style="display:flex;align-items:center;gap:6px">
+        <span style="width:13px;height:13px;border-radius:50%;background:rgba(74,124,89,.85);border:1.5px solid #2d5a3d;display:inline-block;flex-shrink:0"></span>Significant gain (p &lt; .05)
+      </span>
+      <span style="display:flex;align-items:center;gap:6px">
+        <span style="width:13px;height:13px;border-radius:50%;background:rgba(181,68,58,.8);border:1.5px solid #922b22;display:inline-block;flex-shrink:0"></span>Significant decline (p &lt; .05)
+      </span>
+      <span style="display:flex;align-items:center;gap:6px">
+        <span style="width:13px;height:13px;border-radius:50%;background:rgba(140,140,140,.5);border:1.5px solid #999;display:inline-block;flex-shrink:0"></span>No significant change
+      </span>
+      <span style="display:flex;align-items:center;gap:6px">
+        <span style="width:22px;height:0;border-top:2px dashed rgba(74,123,181,.75);display:inline-block"></span>Trend line
+      </span>
+    </div>
+
+    <div style="position:relative">
+      <canvas id="lessonScatterCanvas" style="width:100%;height:420px" role="img"
+        aria-label="Scatter chart: lessons taught vs pre-to-post score change by school. 16 schools plotted. Spearman rho=-0.54, p=.030. Schools with more lessons tend to show smaller gains.">
+      </canvas>
+      <!-- Tooltip -->
+      <div id="scatterTip" style="
+        position:absolute;pointer-events:none;display:none;
+        background:#fff;border:1px solid #ddd;border-radius:8px;
+        padding:10px 14px;font-family:Arial,sans-serif;font-size:12px;
+        box-shadow:0 4px 16px rgba(0,0,0,.12);max-width:220px;z-index:10;line-height:1.6">
+      </div>
+    </div>
+  </div>
+
+  <!-- BASELINE BAR CHART -->
+  <div class="chart-wrap" style="margin-top:1.5rem">
+    <h3>Baseline Knowledge by Lesson Volume</h3>
+    <p class="chart-subtitle">Schools grouped into three bands. The blue bars show how much students already knew <em>before</em> the year began. Higher starting knowledge = less room to show survey gains.</p>
+    <div style="position:relative">
+      <canvas id="baselineBarCanvas" style="width:100%;height:280px" role="img"
+        aria-label="Grouped bar chart: average pre-survey score and average score change by low, medium, and high lesson bands.">
+      </canvas>
+    </div>
+  </div>
+
+  <!-- Explanatory callouts -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:1.5rem">
+    <div class="callout am" style="margin:0;border-radius:var(--rad)">
+      <strong>Most likely explanation: ceiling effect.</strong>
+      Schools receiving 150+ lessons averaged a 77.9% pre-survey score — already above schools receiving under 90 lessons (73.5%). When students start the year knowing more, the survey has less room to detect gains. This is not evidence that lessons are ineffective.
+    </div>
+    <div class="callout" style="margin:0;border-radius:var(--rad)">
+      <strong>The 4 schools with significant gains had 65–156 lessons.</strong>
+      Virginia Peterson (+14.9pp), Sinsheimer (+9.6pp), Pat Butler (+8.3pp), and Vineyard (+7.4pp) had moderate lesson counts — but three of the four started with lower baselines (67–74%), giving the survey more room to show real learning.
+    </div>
+    <div class="callout rd" style="margin:0;border-radius:var(--rad)">
+      <strong>What this analysis cannot tell us.</strong>
+      Lesson counts are school-level, not classroom-level. A school with 261 lessons may have distributed them unevenly. Adding a teacher name drop-down to the survey would allow us to isolate lesson dosage as a variable in future years.
+    </div>
+  </div>
+
+</section>
+</div>
+<!-- END LESSONS SECTION -->
+
 <!-- METHODS -->
 <section id="methods">
   <div class="sec-label">How We Analyzed the Data</div>
@@ -298,10 +403,6 @@ footer p{opacity:.7;margin-top:.4rem}
     <div class="mc"><div class="mc-icon">📊</div><h4>The statistical test: Welch's t-test</h4><p>We used Welch's independent-samples t-test for every question. "Independent-samples" because pre and post are two separate anonymous groups. "Welch's" (not Student's) because our groups have different sizes and unequal variance — confirmed by Levene's test for 16 of 22 questions. Welch's automatically adjusts for this.</p></div>
     <div class="mc"><div class="mc-icon">📏</div><h4>Effect size (Cohen's d)</h4><p>A p-value tells you whether a result is real. Cohen's d tells you how big it is. Our significant results fall in the "small" range (d = 0.13–0.39). In education research, small effects consistently observed across hundreds of students are meaningful — they don't mean the program isn't working.</p></div>
     <div class="mc"><div class="mc-icon">⚠️</div><h4>Key limitation</h4><p>Without a control group (schools not receiving the program), we cannot prove the program caused the changes. Some change might have happened regardless due to maturation, season, or other school activities. A waitlist-control design in a future year would strengthen causal claims significantly.</p></div>
-  </div>
-
-  <div style="text-align:center;margin-top:3rem">
-    <img src="https://www.onecoolearth.org/uploads/6/3/1/4/63140405/published/ocelogo-05.png?1761843518" style="height:140px;" alt="I Support School Gardens">
   </div>
 </section>
 
@@ -387,7 +488,6 @@ footer p{opacity:.7;margin-top:.4rem}
         </p>
       </div>
     </div>
-
   </div>
 </section>
 </div>
@@ -656,6 +756,361 @@ function filterSchools(f, btn){
 }
 renderSchools();
 
+</script>
+<script>
+(function () {
+  /* ── Data ───────────────────────────────────────────────── */
+  var schools = [
+    {n:'Virginia Peterson', l:90,  c:14.9, pre:66.9, post:81.9, sig:true,  dir:'pos', pN:52,  qN:20},
+    {n:'Sinsheimer',        l:72,  c:9.6,  pre:73.8, post:83.5, sig:true,  dir:'pos', pN:29,  qN:29},
+    {n:'Pat Butler',        l:106, c:8.3,  pre:70.5, post:78.8, sig:true,  dir:'pos', pN:67,  qN:61},
+    {n:'Vineyard',          l:156, c:7.4,  pre:78.8, post:86.2, sig:true,  dir:'pos', pN:137, qN:131},
+    {n:'Winifred Pifer',    l:65,  c:5.0,  pre:75.4, post:80.4, sig:false, dir:'pos', pN:67,  qN:50},
+    {n:'Santa Rosa',        l:98,  c:3.5,  pre:77.0, post:80.4, sig:false, dir:'pos', pN:30,  qN:33},
+    {n:'Cappy Culver',      l:81,  c:3.5,  pre:82.4, post:85.9, sig:false, dir:'pos', pN:22,  qN:22},
+    {n:'Santa Margarita',   l:201, c:3.1,  pre:76.3, post:79.4, sig:false, dir:'pos', pN:52,  qN:54},
+    {n:'Monarch Grove',     l:139, c:2.8,  pre:80.0, post:82.8, sig:false, dir:'pos', pN:26,  qN:23},
+    {n:'San Benito',        l:80,  c:2.2,  pre:72.9, post:75.1, sig:false, dir:'pos', pN:54,  qN:22},
+    {n:'Lillian Larsen',    l:120, c:-0.8, pre:67.7, post:66.9, sig:false, dir:'neg', pN:30,  qN:33},
+    {n:'Baywood',           l:261, c:-1.6, pre:76.5, post:74.8, sig:false, dir:'neg', pN:39,  qN:38},
+    {n:'Grover Beach',      l:195, c:-2.1, pre:80.6, post:78.4, sig:false, dir:'neg', pN:18,  qN:35},
+    {n:'Monterey Road',     l:114, c:-3.0, pre:75.4, post:72.4, sig:false, dir:'neg', pN:29,  qN:22},
+    {n:'Shandon',           l:130, c:-5.3, pre:70.1, post:64.9, sig:false, dir:'neg', pN:11,  qN:10},
+    {n:'Cambria',           l:162, c:-9.1, pre:77.6, post:68.5, sig:true,  dir:'neg', pN:22,  qN:13},
+  ];
+
+  /* ── Colors ─────────────────────────────────────────────── */
+  function fillColor(d) {
+    if (d.sig && d.dir==='pos') return 'rgba(74,124,89,.85)';
+    if (d.sig && d.dir==='neg') return 'rgba(181,68,58,.8)';
+    return 'rgba(140,140,140,.5)';
+  }
+  function strokeColor(d) {
+    if (d.sig && d.dir==='pos') return '#2d5a3d';
+    if (d.sig && d.dir==='neg') return '#922b22';
+    return '#999';
+  }
+
+  /* ── Regression ─────────────────────────────────────────── */
+  var xs = schools.map(function(d){return d.l;}),
+      ys = schools.map(function(d){return d.c;}),
+      n  = xs.length,
+      xm = xs.reduce(function(a,b){return a+b;},0)/n,
+      ym = ys.reduce(function(a,b){return a+b;},0)/n,
+      sl = xs.reduce(function(s,x,i){return s+(x-xm)*(ys[i]-ym);},0)/
+           xs.reduce(function(s,x){return s+Math.pow(x-xm,2);},0),
+      ic = ym - sl*xm;
+
+  /* ══════════════════════════════════════════════════════════
+     SCATTER CHART
+  ══════════════════════════════════════════════════════════ */
+  (function buildScatter() {
+    var wrap   = document.getElementById('lessonScatterCanvas').parentElement;
+    var tip    = document.getElementById('scatterTip');
+    var DPR    = window.devicePixelRatio || 1;
+    var canvas = document.getElementById('lessonScatterCanvas');
+
+    var PAD = {top:24, right:30, bottom:60, left:58};
+    var xMin=55, xMax=280, yMin=-13, yMax=18;
+
+    function resize() {
+      var w = wrap.clientWidth;
+      var h = Math.min(420, Math.round(w*0.5));
+      canvas.style.width  = w+'px';
+      canvas.style.height = h+'px';
+      canvas.width  = w * DPR;
+      canvas.height = h * DPR;
+      draw(canvas.getContext('2d'), w, h);
+    }
+
+    function toX(ctx_w, v) {
+      return PAD.left + (v - xMin)/(xMax - xMin) * (ctx_w - PAD.left - PAD.right);
+    }
+    function toY(ctx_h, v) {
+      return PAD.top + (1 - (v - yMin)/(yMax - yMin)) * (ctx_h - PAD.top - PAD.bottom);
+    }
+
+    function draw(ctx, W, H) {
+      ctx.clearRect(0, 0, W*DPR, H*DPR);
+      ctx.save();
+      ctx.scale(DPR, DPR);
+
+      var plotW = W - PAD.left - PAD.right;
+      var plotH = H - PAD.top  - PAD.bottom;
+
+      /* grid lines */
+      ctx.strokeStyle = 'rgba(0,0,0,.06)';
+      ctx.lineWidth   = 1;
+      [0, 50, 100, 150, 200, 250].forEach(function(v) {
+        var x = toX(W, v);
+        ctx.beginPath(); ctx.moveTo(x, PAD.top); ctx.lineTo(x, H-PAD.bottom); ctx.stroke();
+      });
+      [-10,-5,0,5,10,15].forEach(function(v) {
+        var y = toY(H, v);
+        ctx.beginPath(); ctx.moveTo(PAD.left, y); ctx.lineTo(W-PAD.right, y); ctx.stroke();
+      });
+
+      /* zero line */
+      var y0 = toY(H, 0);
+      ctx.strokeStyle = 'rgba(0,0,0,.2)';
+      ctx.lineWidth   = 1;
+      ctx.setLineDash([4,4]);
+      ctx.beginPath(); ctx.moveTo(PAD.left, y0); ctx.lineTo(W-PAD.right, y0); ctx.stroke();
+      ctx.setLineDash([]);
+
+      /* trend line */
+      ctx.strokeStyle = 'rgba(74,123,181,.65)';
+      ctx.lineWidth   = 2;
+      ctx.setLineDash([7,5]);
+      ctx.beginPath();
+      ctx.moveTo(toX(W, xMin), toY(H, sl*xMin+ic));
+      ctx.lineTo(toX(W, xMax), toY(H, sl*xMax+ic));
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      /* dots */
+      schools.forEach(function(d) {
+        var cx = toX(W, d.l);
+        var cy = toY(H, d.c);
+        var r  = Math.max(7, Math.sqrt(d.qN) * 1.05);
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI*2);
+        ctx.fillStyle   = fillColor(d);
+        ctx.fill();
+        ctx.strokeStyle = strokeColor(d);
+        ctx.lineWidth   = 1.5;
+        ctx.stroke();
+      });
+
+      /* axes */
+      ctx.strokeStyle = '#aaa';
+      ctx.lineWidth   = 1;
+      ctx.beginPath(); ctx.moveTo(PAD.left, PAD.top); ctx.lineTo(PAD.left, H-PAD.bottom); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(PAD.left, H-PAD.bottom); ctx.lineTo(W-PAD.right, H-PAD.bottom); ctx.stroke();
+
+      /* x tick labels */
+      ctx.fillStyle  = '#666';
+      ctx.font       = '11px Arial';
+      ctx.textAlign  = 'center';
+      [0, 50, 100, 150, 200, 250].forEach(function(v) {
+        ctx.fillText(v, toX(W, v), H-PAD.bottom+16);
+      });
+
+      /* y tick labels */
+      ctx.textAlign = 'right';
+      [-10,-5,0,5,10,15].forEach(function(v) {
+        ctx.fillText((v>0?'+':'')+v+'pp', PAD.left-8, toY(H,v)+4);
+      });
+
+      /* axis titles */
+      ctx.fillStyle  = '#555';
+      ctx.font       = '12px Arial';
+      ctx.textAlign  = 'center';
+      ctx.fillText('Lessons taught (2025–26)', PAD.left + plotW/2, H-PAD.bottom+38);
+
+      ctx.save();
+      ctx.translate(15, PAD.top + plotH/2);
+      ctx.rotate(-Math.PI/2);
+      ctx.fillText('Pre → Post change (pp)', 0, 0);
+      ctx.restore();
+
+      ctx.restore();
+    }
+
+    /* hit test for tooltip */
+    canvas.addEventListener('mousemove', function(e) {
+      var rect = canvas.getBoundingClientRect();
+      var mx   = e.clientX - rect.left;
+      var my   = e.clientY - rect.top;
+      var W    = canvas.offsetWidth;
+      var H    = canvas.offsetHeight;
+      var hit  = null;
+
+      schools.forEach(function(d) {
+        var cx = toX(W, d.l);
+        var cy = toY(H, d.c);
+        var r  = Math.max(7, Math.sqrt(d.qN)*1.05);
+        if (Math.hypot(mx-cx, my-cy) < r+4) hit = d;
+      });
+
+      if (hit) {
+        canvas.style.cursor = 'pointer';
+        var sign = hit.c >= 0 ? '+' : '';
+        var sigTxt = hit.sig ? (hit.dir==='pos' ? ' ✓ sig. gain' : ' ✓ sig. decline') : '';
+        tip.innerHTML =
+          '<strong style="color:#2d5a3d">'+hit.n+'</strong><br>'+
+          '<span style="color:#666">Lessons: <b>'+hit.l+'</b></span><br>'+
+          '<span style="color:#666">Change: <b>'+sign+hit.c.toFixed(1)+'pp'+sigTxt+'</b></span><br>'+
+          '<span style="color:#666">Pre: '+hit.pre+'% → Post: '+hit.post+'%</span><br>'+
+          '<span style="color:#999;font-size:11px">Post-survey n = '+hit.qN+'</span>';
+        tip.style.display = 'block';
+        var tx = e.clientX - rect.left + 14;
+        var ty = e.clientY - rect.top  - 10;
+        if (tx + 230 > W) tx = tx - 250;
+        tip.style.left = tx+'px';
+        tip.style.top  = ty+'px';
+      } else {
+        canvas.style.cursor = '';
+        tip.style.display = 'none';
+      }
+    });
+    canvas.addEventListener('mouseleave', function() { tip.style.display='none'; });
+
+    resize();
+    window.addEventListener('resize', resize);
+  })();
+
+  /* ══════════════════════════════════════════════════════════
+     BASELINE BAR CHART
+  ══════════════════════════════════════════════════════════ */
+  (function buildBars() {
+    var bands = [
+      {label:'Low (< 90 lessons)',      schools: schools.filter(function(d){return d.l<90;})},
+      {label:'Medium (90–150 lessons)', schools: schools.filter(function(d){return d.l>=90&&d.l<=150;})},
+      {label:'High (> 150 lessons)',    schools: schools.filter(function(d){return d.l>150;})},
+    ];
+    var avgPre = bands.map(function(b){
+      return parseFloat((b.schools.reduce(function(s,d){return s+d.pre;},0)/b.schools.length).toFixed(1));
+    });
+    var avgChg = bands.map(function(b){
+      return parseFloat((b.schools.reduce(function(s,d){return s+d.c;},0)/b.schools.length).toFixed(1));
+    });
+    var bandN  = bands.map(function(b){return b.schools.length;});
+
+    var canvas = document.getElementById('baselineBarCanvas');
+    var DPR    = window.devicePixelRatio || 1;
+    var PAD    = {top:40, right:30, bottom:60, left:54};
+
+    function resize() {
+      var w = canvas.parentElement.clientWidth;
+      var h = 280;
+      canvas.style.width  = w+'px';
+      canvas.style.height = h+'px';
+      canvas.width  = w*DPR;
+      canvas.height = h*DPR;
+      draw(canvas.getContext('2d'), w, h);
+    }
+
+    function draw(ctx, W, H) {
+      ctx.clearRect(0,0,W*DPR,H*DPR);
+      ctx.save();
+      ctx.scale(DPR,DPR);
+
+      var nBands   = 3;
+      var nBars    = 2;
+      var plotW    = W - PAD.left - PAD.right;
+      var plotH    = H - PAD.top  - PAD.bottom;
+      var groupW   = plotW / nBands;
+      var barW     = Math.min(55, groupW*0.35);
+      var gap      = barW*0.4;
+      var yMin=0, yMax=100;
+
+      function toY(v){ return PAD.top + (1-(v-yMin)/(yMax-yMin))*plotH; }
+      function toX(bi, bar){ return PAD.left + bi*groupW + groupW/2 + (bar===0?-(gap/2+barW):(gap/2)); }
+
+      /* grid */
+      ctx.strokeStyle='rgba(0,0,0,.06)'; ctx.lineWidth=1;
+      [0,25,50,75,100].forEach(function(v){
+        var y=toY(v);
+        ctx.beginPath(); ctx.moveTo(PAD.left,y); ctx.lineTo(W-PAD.right,y); ctx.stroke();
+        ctx.fillStyle='#999'; ctx.font='11px Arial'; ctx.textAlign='right';
+        ctx.fillText(v+'%', PAD.left-6, y+4);
+      });
+
+      /* bars */
+      var preColors  = ['rgba(74,123,181,.45)','rgba(74,123,181,.65)','rgba(74,123,181,.9)'];
+      var preStrokes = ['rgba(74,123,181,.9)','rgba(74,123,181,.9)','rgba(74,123,181,.9)'];
+
+      bands.forEach(function(band, bi) {
+        /* pre bar */
+        var xPre = toX(bi, 0);
+        var yPre = toY(avgPre[bi]);
+        var h0   = toY(0);
+        ctx.fillStyle   = preColors[bi];
+        ctx.strokeStyle = preStrokes[bi];
+        ctx.lineWidth   = 1.5;
+        /* rounded top */
+        var r2 = 4;
+        ctx.beginPath();
+        ctx.moveTo(xPre+r2, yPre);
+        ctx.lineTo(xPre+barW-r2, yPre);
+        ctx.quadraticCurveTo(xPre+barW, yPre, xPre+barW, yPre+r2);
+        ctx.lineTo(xPre+barW, h0);
+        ctx.lineTo(xPre, h0);
+        ctx.lineTo(xPre, yPre+r2);
+        ctx.quadraticCurveTo(xPre, yPre, xPre+r2, yPre);
+        ctx.closePath();
+        ctx.fill(); ctx.stroke();
+
+        /* change bar */
+        var xChg = toX(bi, 1);
+        var vc   = avgChg[bi];
+        var yTop = toY(Math.max(vc,0));
+        var yBot = toY(Math.min(vc,0));
+        var hBar = Math.abs(yTop - yBot);
+        var fillC  = vc>=0 ? 'rgba(74,124,89,.8)' : 'rgba(181,68,58,.8)';
+        var strkC  = vc>=0 ? '#2d5a3d'             : '#922b22';
+        ctx.fillStyle=fillC; ctx.strokeStyle=strkC; ctx.lineWidth=1.5;
+        ctx.beginPath();
+        if (vc>=0) {
+          ctx.moveTo(xChg+r2, yTop);
+          ctx.lineTo(xChg+barW-r2, yTop);
+          ctx.quadraticCurveTo(xChg+barW, yTop, xChg+barW, yTop+r2);
+          ctx.lineTo(xChg+barW, yBot); ctx.lineTo(xChg, yBot);
+          ctx.lineTo(xChg, yTop+r2);
+          ctx.quadraticCurveTo(xChg, yTop, xChg+r2, yTop);
+        } else {
+          ctx.moveTo(xChg, yTop); ctx.lineTo(xChg+barW, yTop);
+          ctx.lineTo(xChg+barW, yBot-r2);
+          ctx.quadraticCurveTo(xChg+barW, yBot, xChg+barW-r2, yBot);
+          ctx.lineTo(xChg+r2, yBot);
+          ctx.quadraticCurveTo(xChg, yBot, xChg, yBot-r2);
+        }
+        ctx.closePath(); ctx.fill(); ctx.stroke();
+
+        /* value labels */
+        ctx.fillStyle='#333'; ctx.font='bold 12px Arial'; ctx.textAlign='center';
+        ctx.fillText(avgPre[bi]+'%', xPre+barW/2, yPre-7);
+        var sign = vc>=0?'+':'';
+        ctx.fillStyle = vc>=0 ? '#2d5a3d' : '#922b22';
+        ctx.fillText(sign+vc.toFixed(1)+'pp', xChg+barW/2, (vc>=0?yTop:yBot)+(vc>=0?-7:14));
+      });
+
+      /* axes */
+      ctx.strokeStyle='#aaa'; ctx.lineWidth=1;
+      ctx.beginPath(); ctx.moveTo(PAD.left,PAD.top); ctx.lineTo(PAD.left,H-PAD.bottom); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(PAD.left,H-PAD.bottom); ctx.lineTo(W-PAD.right,H-PAD.bottom); ctx.stroke();
+
+      /* x band labels */
+      bands.forEach(function(band, bi) {
+        var xCtr = PAD.left + bi*groupW + groupW/2;
+        ctx.fillStyle='#444'; ctx.font='11px Arial'; ctx.textAlign='center';
+        var label = band.label + ' ('+bandN[bi]+' schools)';
+        ctx.fillText(label, xCtr, H-PAD.bottom+18);
+      });
+
+      /* legend */
+      var lx = PAD.left;
+      var ly = 14;
+      var items = [
+        {color:'rgba(74,123,181,.7)', label:'Avg pre-survey score (%)'},
+        {color:'rgba(74,124,89,.8)',  label:'Avg score change (pp)'},
+      ];
+      items.forEach(function(item, i) {
+        ctx.fillStyle=item.color;
+        ctx.fillRect(lx + i*180, ly-9, 12, 12);
+        ctx.fillStyle='#555'; ctx.font='11px Arial'; ctx.textAlign='left';
+        ctx.fillText(item.label, lx + i*180 + 16, ly);
+      });
+
+      ctx.restore();
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+  })();
+
+})(); // end IIFE
 </script>
 </body>
 </html>
